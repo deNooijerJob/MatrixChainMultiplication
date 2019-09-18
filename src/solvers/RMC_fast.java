@@ -17,11 +17,11 @@ public class RMC_fast extends RMC {
         for (int x = n-1; x >= 0; x--) {
             //System.out.println("x = " + x);
             for (int y = x+1; y < n; y++) {
-                //m[x][y] = 100000000;
+                m[x][y] = Integer.MAX_VALUE;
                 for (int k = x; k < y-1; k++) {
-                    int cost = m[x][k] + m[k+1][y] + p[x]*p[k]*p[y];
+                    int cost = m[x][k]+ m[k+1][y] + p[x]*p[k]*p[y];
                     System.out.println("cost = " + cost);
-                    if ( cost < m[x][y])
+                    if (cost < m[x][y])
                         m[x][y] = cost;
                         //printM(m,n);
                 }
