@@ -15,10 +15,9 @@ public class RMC_fast extends RMC {
             m[x][x] = 0;
         }
         for (int x = n-1; x >= 0; x--) {
-            //System.out.println("x = " + x);
             for (int y = x+1; y < n; y++) {
-                m[x][y] = Integer.MAX_VALUE;
                 for (int k = x; k < y-1; k++) {
+                    m[x][y] = 1000000000;
                     int cost = m[x][k]+ m[k+1][y] + p[x]*p[k]*p[y];
                     System.out.println("cost = " + cost);
                     if (cost < m[x][y])
