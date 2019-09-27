@@ -1,12 +1,15 @@
 package Solvers;
 
+import ADT.Matrix;
+
 public class RMC_fast extends RMC {
 
     @Override
-    public int solve(int[] p, int q, int w) {
+    public int solve(Matrix[] matrices, int[] p, int q, int w) {
         int n = p.length;
 
         int[][] m = new int[n][n];
+        int[][] s = new int[n][n];
 
         for (int i = 1; i < n; i++) {
             m[i][i] = 0;
@@ -22,11 +25,14 @@ public class RMC_fast extends RMC {
                     int cost = m[i][k] + m[k+1][j] + p[i-1]*p[k]*p[j];
                     if (cost < m[i][j]) {
                         m[i][j] = cost;
+                        s[i][j] = k;
                     }
                 }
             }
         }
-
+        System.out.println("Parenthesized result:");
+        PrintParenthesis.print(matrices, s, 0,n-2);
+        System.out.print("\n");
         return m[1][n-1];
     }
 }
